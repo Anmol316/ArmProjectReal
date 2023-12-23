@@ -8,9 +8,10 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.Arm.Arm;
-import frc.robot.subsystems.Arm.ArmIO.ArmMotorIO;
+import frc.robot.subsystems.Arm.ArmReal;
+import frc.robot.subsystems.Arm.ArmMotorIO;
 import frc.robot.subsystems.pneumatics.CompressorIOPCM;
+import frc.robot.subsystems.Arm.ArmMotorIO;
 import frc.robot.subsystems.pneumatics.DoubleSolenoidIOPCM;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -25,7 +26,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private static final Arm arm = new Arm(new CompressorIOPCM(0), new DoubleSolenoidIOPCM(0, 0, 0), new ArmMotorIO(0));
+  private static final ArmReal arm = new ArmReal(new CompressorIOPCM(0), new DoubleSolenoidIOPCM(0, 0, 0), new ArmMotorIO(0));
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed

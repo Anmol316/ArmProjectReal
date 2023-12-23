@@ -28,18 +28,6 @@ public class PneumaticIntake extends SubsystemBase {
     }
   }
 
-  public void extendIntake() {
-    intakeSolenoid.set(Value.kForward);
-  }
-
-  public void retractIntake() {
-    intakeSolenoid.set(Value.kReverse);
-  }
-
-  public void stopIntake() {
-    intakeSolenoid.set(Value.kOff);
-  }
-
   @Override
   public void periodic() {
     intakeSolenoid.updateInputs(sInputs);

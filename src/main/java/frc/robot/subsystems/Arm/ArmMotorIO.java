@@ -17,7 +17,7 @@ import com.revrobotics.SparkMaxRelativeEncoder;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
-public class ArmMotorIO implements ArmIO {
+public class ArmMotorIO implements ArmRealIO {
     private final TalonFX falcon;
 
     private final StatusSignal<Double> pivotPosition;

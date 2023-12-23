@@ -3,7 +3,7 @@ package frc.robot.subsystems.Arm;
 
 import org.littletonrobotics.junction.AutoLog;
 
-public interface ArmIO {
+public interface ArmRealIO {
     @AutoLog
     public static class ArmMotorIO {
     public double motorPostion = 0.0;

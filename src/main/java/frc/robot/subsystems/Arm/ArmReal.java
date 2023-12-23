@@ -13,15 +13,16 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.pneumatics.CompressorIO;
-import frc.robot.subsystems.Arm.ArmIOInputsAutoLogged;
+import frc.robot.subsystems.Arm.ArmRealIOInputsAutoLogged;
 import frc.robot.subsystems.pneumatics.CompressorIOInputsAutoLogged;
 import frc.robot.subsystems.pneumatics.DoubleSolenoidIO;
 import frc.robot.subsystems.pneumatics.DoubleSolenoidIOInputsAutoLogged;
-public class Arm extends SubsystemBase {
-    private final ArmIO motor;
+
+public class ArmReal extends SubsystemBase {
+    private final ArmRealIO motor;
     private final DoubleSolenoidIO brake;
     private final CompressorIO compressor;
-    private final ArmIOInputsAutoLogged sInputs = new ArmIOInputsAutoLogged();
+    private final ArmRealIOInputsAutoLogged sInputs = new ArmRealIOInputsAutoLogged();
     private final CompressorIOInputsAutoLogged cInputs = new CompressorIOInputsAutoLogged();
     private final DoubleSolenoidIOInputsAutoLogged dsInputs = new DoubleSolenoidIOInputsAutoLogged();
    // private final PivotIOInputsAutoLogged pInputs = new PivotIOInputsAutoLogged();
@@ -31,7 +32,7 @@ public class Arm extends SubsystemBase {
 
     //JoystickButton aButton = new JoystickButton(Joystick name, int 1);
 
-    public Arm(CompressorIO compressor, DoubleSolenoidIO brake, ArmIO motor) {
+    public ArmReal(CompressorIO compressor, DoubleSolenoidIO brake, ArmRealIO motor) {
         this.motor = motor;
         this.brake = brake;
         this.compressor = compressor;
@@ -48,6 +49,30 @@ public class Arm extends SubsystemBase {
 
 
     }
+     public void setPosition(double position) {
+    brake.deactivate();
+    motor.setPosition(position);
+    brake.activate();
 
+    Logger.recordOutput("Intake Target", position);
+  }
+
+  public void stop() {
+    motor.stop();
+  }
+
+  public void activateBrake() {
+    brake.activate();
+  }
+
+  public void deactivateBrake() {
+    brake.deactivate();
+  }
+
+  public void toggleCompressor() {
+    compressor.toggleCompressor();
+  }
 }
+
+
 
