@@ -2,16 +2,15 @@ package frc.robot.subsystems.pneumatics;
 
 import org.littletonrobotics.junction.AutoLog;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-
 public interface DoubleSolenoidIO {
     @AutoLog
     public static class DoubleSolenoidIOInputs {
-        public Value val = Value.kOff;
-        public Value valForward = Value.kForward;
+        public boolean isOn = false;
     }
 
     public default void updateInputs(DoubleSolenoidIOInputs inputs) {}
 
-    public default void set(Value value) {}
+    public default void activate() {}
+
+    public default void deactivate() {}
 }

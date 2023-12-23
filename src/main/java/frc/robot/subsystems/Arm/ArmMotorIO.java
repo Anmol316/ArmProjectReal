@@ -1,6 +1,8 @@
 package frc.robot.subsystems.Arm;
 //package frc.robot.subsystems.intake;
 
+import org.littletonrobotics.junction.Logger;
+
 import com.ctre.phoenix6.BaseStatusSignal;
 import com.ctre.phoenix6.StatusSignal;
 import com.ctre.phoenix6.configs.Slot0Configs;
@@ -37,7 +39,18 @@ public class ArmMotorIO implements ArmIO {
         appliedVolts = falcon.getMotorVoltage();
         currentAmps = falcon.getStatorCurrent();
 
+        BaseStatusSignal.setUpdateFrequencyForAll(100, pivotPosition, pivotVelocity, appliedVolts, currentAmps);
+
     //    falcon.configSelectedFeedbackSensor()
+}
+
+public void updateInputs(ArmMotorIO inputs) {
+    inputs.motorPostion = Units.rotationsToDegrees(pivotPosition.getValueAsDouble());
+    inputs.motorVelocity = Units.rotationsPerMinuteToRadiansPerSecond(pivotVelocity.getValueAsDouble());
+
+    inputs.appliedVolts = appliedVolts.getValue();
+    inputs.currentAmps = currentAmps.getValue();
+
 }
 
 public void stop() {
@@ -52,5 +65,14 @@ public void configurePID(double kP, double kI, double kD) {
     config.kD = kD;
 
     falcon.getConfigurator().apply(config);
+
 }
+public void setPosition(double position) {
+        falcon.setControl(new PositionVoltage(position));
+
+}
+public void recordVelocity(double velocity) {
+    falcon.setControl(new VelocityVoltage(velocity));
+  }
+
 }
