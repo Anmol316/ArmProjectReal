@@ -11,7 +11,6 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Arm.ArmReal;
 import frc.robot.subsystems.Arm.ArmMotorIO;
 import frc.robot.subsystems.pneumatics.CompressorIOPCM;
-import frc.robot.subsystems.Arm.ArmMotorIO;
 import frc.robot.subsystems.pneumatics.DoubleSolenoidIOPCM;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;

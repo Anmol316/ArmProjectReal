@@ -1,7 +1,6 @@
 package frc.robot.subsystems.Arm;
 //package frc.robot.subsystems.intake;
 
-import org.littletonrobotics.junction.Logger;
 
 import com.ctre.phoenix6.BaseStatusSignal;
 import com.ctre.phoenix6.StatusSignal;
@@ -11,11 +10,7 @@ import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-import com.revrobotics.SparkMaxAbsoluteEncoder;
-import com.revrobotics.SparkMaxRelativeEncoder;
-
 import edu.wpi.first.math.util.Units;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 public class ArmMotorIO implements ArmRealIO {
     private final TalonFX falcon;
@@ -44,7 +39,7 @@ public class ArmMotorIO implements ArmRealIO {
     //    falcon.configSelectedFeedbackSensor()
 }
 
-public void updateInputs(ArmMotorIO inputs) {
+public void updateInputs(ArmRealIOInputs inputs) {
     inputs.motorPostion = Units.rotationsToDegrees(pivotPosition.getValueAsDouble());
     inputs.motorVelocity = Units.rotationsPerMinuteToRadiansPerSecond(pivotVelocity.getValueAsDouble());
 

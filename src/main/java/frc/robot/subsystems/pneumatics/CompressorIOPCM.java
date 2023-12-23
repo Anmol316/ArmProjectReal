@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 public class CompressorIOPCM implements CompressorIO{
     private final Compressor compressor;
+    private boolean toggle; 
 
     public CompressorIOPCM(int module) {
         compressor  = new Compressor(module, PneumaticsModuleType.CTREPCM);
@@ -18,13 +19,15 @@ public class CompressorIOPCM implements CompressorIO{
         inputs.compressorPressure = compressor.getPressure();
     }
 
-    @Override
-    public void enableCompressor() {
-        compressor.enableDigital();
-    }
 
-    @Override 
-    public void disableCompressor() {
-        compressor.disable();
+    @Override
+    public void toggleCompressor() {
+        if (toggle == false) {
+            compressor.enableDigital();
+            toggle = true;
+        } else {
+            compressor.disable();
+            toggle = false;
+        }
+        }
     }
-}

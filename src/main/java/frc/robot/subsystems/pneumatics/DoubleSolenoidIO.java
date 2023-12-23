@@ -10,6 +10,13 @@ public interface DoubleSolenoidIO {
 
     public default void updateInputs(DoubleSolenoidIOInputs inputs) {}
 
+    public default void toggleCompressor() {
+
+    }
+
+    public default void retractIntake() {
+        
+    }
     public default void activate() {}
 
     public default void deactivate() {}

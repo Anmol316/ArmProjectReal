@@ -1,19 +1,10 @@
 package frc.robot.subsystems.Arm;
 
 
-
-import org.littletonrobotics.conduit.schema.Joystick;
-import org.littletonrobotics.junction.AutoLog;
 import org.littletonrobotics.junction.Logger;
 
-import com.ctre.phoenix6.controls.PositionVoltage;
-import com.ctre.phoenix6.controls.VelocityVoltage;
-
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.pneumatics.CompressorIO;
-import frc.robot.subsystems.Arm.ArmRealIOInputsAutoLogged;
 import frc.robot.subsystems.pneumatics.CompressorIOInputsAutoLogged;
 import frc.robot.subsystems.pneumatics.DoubleSolenoidIO;
 import frc.robot.subsystems.pneumatics.DoubleSolenoidIOInputsAutoLogged;
@@ -22,7 +13,7 @@ public class ArmReal extends SubsystemBase {
     private final ArmRealIO motor;
     private final DoubleSolenoidIO brake;
     private final CompressorIO compressor;
-    private final ArmRealIOInputsAutoLogged sInputs = new ArmRealIOInputsAutoLogged();
+    private final ArmRealIOInputsAutoLogged pInputs = new ArmRealIOInputsAutoLogged();
     private final CompressorIOInputsAutoLogged cInputs = new CompressorIOInputsAutoLogged();
     private final DoubleSolenoidIOInputsAutoLogged dsInputs = new DoubleSolenoidIOInputsAutoLogged();
    // private final PivotIOInputsAutoLogged pInputs = new PivotIOInputsAutoLogged();
@@ -41,11 +32,11 @@ public class ArmReal extends SubsystemBase {
     public void periodic() {
         compressor.updateInputs(cInputs);
         brake.updateInputs(dsInputs);
-        motor.updateInputs(sInputs);
+        motor.updateInputs(pInputs);
         
         Logger.processInputs("Compressor", cInputs);
         Logger.processInputs("Brake", dsInputs);
-        Logger.processInputs("Motor", sInputs);
+        Logger.processInputs("Motor", pInputs);
 
 
     }
